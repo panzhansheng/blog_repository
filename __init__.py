@@ -71,6 +71,7 @@ app = CustomFlask(__name__)
 
 # app.register_blueprint(static_module,  url_prefix='/')
 
-# import template as bp
-# bp.init(app)
+import template as bp
+bp.init(app)
 
+print(f'init called')
