@@ -67,7 +67,7 @@ app.register_blueprint(api_module,  url_prefix='/api')
 blog_service = BlogService()
 blog_list = blog_service.getall()
 print(f'blog_list={blog_list}')
-app.run("0.0.0.0", port="8000")
+#app.run("0.0.0.0", port="8000")
 
 
 # for control-c capture
