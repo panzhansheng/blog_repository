@@ -76,4 +76,5 @@ bp.init(app)
 
 print(f'init called')
 if __name__ == '__main__':
+   print(f'app.url_map={app.url_map}')
    app.run()
