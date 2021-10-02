@@ -74,4 +74,4 @@ app = CustomFlask(__name__)
 import template as bp
 bp.init(app)
 
-print(f'init called')
+print(f'blog_repository directory init called')
