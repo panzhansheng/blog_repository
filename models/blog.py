@@ -13,3 +13,5 @@ class Blog(BaseModel):
     def __repr__(self):
         return "<Blog(id='%s', date='%s', name='%s', text='%s'>" % (
                                 self.id, self.date, self.name, self.text)
+    def to_json(self):
+        return ["id:",self.id,"date:", self.date, "name:", self.name, "text:", self.text ]

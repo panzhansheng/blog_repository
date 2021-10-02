@@ -74,7 +74,7 @@ app = CustomFlask(__name__)
 import template as bp
 bp.init(app)
 
-print(f'init called')
+print(f'init in blog_repository.py called')
 
 if __name__ == '__main__':
    print(f'app.url_map={app.url_map}')
