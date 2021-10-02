@@ -3,7 +3,7 @@ import os
 from flask import Blueprint
 from blog_repository import app
 
-
+from api import *
 from api import bp as api_module
 
 def init(app):
