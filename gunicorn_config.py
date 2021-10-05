@@ -1,5 +1,5 @@
 # /path-to-your-project/gunicorn_conf.py
-bind = '0.0.0.0:6000'
+bind = '0.0.0.0:8080'
 worker_class = 'sync'
 loglevel = 'debug'
 accesslog = '/var/log/gunicorn/access_log_blog_repository'
