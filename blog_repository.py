@@ -59,6 +59,7 @@ class CustomFlask(Flask):
 
 
 app = CustomFlask(__name__)
+app.config['SECRET_KEY']='Gdou@2021'
 #app = Flask(__name__)
 #app.config.from_object(Config)
 
@@ -73,6 +74,11 @@ app = CustomFlask(__name__)
 
 import template as bp
 bp.init(app)
+
+import login as bp_login
+bp_login.init(app)
+
+
 
 print(f'init in blog_repository.py called')
 

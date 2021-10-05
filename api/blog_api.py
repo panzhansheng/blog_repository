@@ -18,9 +18,10 @@ print(f'blog_api called')
 def home():
      return render_template('./index.html')
 
+
 @bp.route('/blog/getbloglist', methods=['GET'])
 @token_required
-def get_blog_list():
+def get_blog_list(current_user):
 
     list = blog_service.getall()
 
