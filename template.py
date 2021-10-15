@@ -1,7 +1,7 @@
 import inject
 import os
 from flask import Blueprint
-from blog_repository import app
+from flask import current_app as app
 
 from api import blog_api
 from api import bp as api_module

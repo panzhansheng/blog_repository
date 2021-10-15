@@ -1,9 +1,11 @@
 """
 run this app with gunicorn web server:
-gunicorn -c gunicorn_config.py gunicorn_main:app
+sudo gunicorn -c gunicorn_config.py gunicorn_main:app
 if error occurs: cat /var/log/gunicorn/error_log_blog_repository
-
+error:
+inject.InjectorException: Injector is already configured
 """
+
 
 import inject
 import db
@@ -15,13 +17,12 @@ from sqlalchemy.types import String
 from sqlalchemy.orm import sessionmaker
 #from config import Config
 from repositories.blog_repository import BlogRepository
-from api import bp as api_module
+
 from services.blog_service import BlogService
-#from api.blog_api import blog_service
 
 db.init_db()
 
-
+# config the inject
 def config_ioc(binder):
     blog_repository = BlogRepository()
 
@@ -51,9 +52,10 @@ def config_ioc(binder):
     # binder.bind(db.MajorSQL,major_bind)
     # binder.bind(db.PreRecStudentSQL,prerecstudent_bind)
 
+# Configure a shared injector
 inject.configure(config_ioc)
 
-
+# jinya2 config
 class CustomFlask(Flask):
     jinja_options = Flask.jinja_options.copy()
     jinja_options.update(dict(
@@ -65,38 +67,24 @@ class CustomFlask(Flask):
       comment_end_string='#}',
     ))
 
-#from api import bp as api_module
-#from api import blog_api
 
 app = CustomFlask(__name__)
-app.register_blueprint(api_module,  url_prefix='/api')
-
+#app = Flask(__name__)
+app.config['SECRET_KEY']='Gdou@2021'
 #app = Flask(__name__)
 #app.config.from_object(Config)
 
-#blog_service = BlogService()
-#blog_list = blog_service.getall()
-#print(f'blog_list={blog_list}')
-#app.run("0.0.0.0", port="8000")
 
+#cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# for control-c capture
-# def handler(signal, frame):
-#   print('CTRL-C pressed!', file=sys.stdout)
-#   sys.exit(0)
+# static_module = Blueprint('static_file', __name__,url_prefix='',static_folder='../static/dist', static_url_path='' )
 
-# signal.signal(signal.SIGINT, handler)
+# static_module = Blueprint('static_file', __name__,url_prefix='',static_folder='../static/dist', static_url_path='/')
 
-# # check to see if this is the main thread of execution
-# if __name__ == '__main__':
+# app.register_blueprint(static_module,  url_prefix='/')
 
-#     # Create the Flask object for the application
-# #    app = Flask(__name__)
-#     # start the Flask Web Application
-#     # While it can be run on any feasible IP, IP = 0.0.0.0 renders the web app on
-#     # the host machine's localhost and is discoverable by other machines on the same network 
-#     blog_service = BlogService()
-#     blog_list = blog_service.getall()
-#     print(f'blog_list={blog_list}')
-#     app.run("0.0.0.0", port="8000")
+import template as bp
+bp.init(app)
 
+from auth import login as bp_login
+bp_login.init(app)

@@ -60,6 +60,7 @@ class CustomFlask(Flask):
 
 
 app = CustomFlask(__name__)
+app.config['SECRET_KEY']='Gdou@2021'
 #app = Flask(__name__)
 #app.config.from_object(Config)
 
@@ -67,7 +68,14 @@ app.register_blueprint(api_module,  url_prefix='/api')
 blog_service = BlogService()
 blog_list = blog_service.getall()
 print(f'blog_list={blog_list}')
-app.run("0.0.0.0", port="8000")
+
+import template as bp
+bp.init(app)
+
+from auth import login as bp_login
+bp_login.init(app)
+
+app.run("0.0.0.0", port="8080")
 
 
 # for control-c capture
