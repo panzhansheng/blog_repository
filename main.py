@@ -1,10 +1,3 @@
-"""
-run this app with gunicorn web server:
-gunicorn -c gunicorn_config.py gunicorn_main:app
-if error occurs: cat /var/log/gunicorn/error_log_blog_repository
-
-"""
-
 import inject
 import db
 from flask import Flask,Blueprint
@@ -65,19 +58,16 @@ class CustomFlask(Flask):
       comment_end_string='#}',
     ))
 
-#from api import bp as api_module
-#from api import blog_api
 
 app = CustomFlask(__name__)
-app.register_blueprint(api_module,  url_prefix='/api')
-
 #app = Flask(__name__)
 #app.config.from_object(Config)
 
-#blog_service = BlogService()
-#blog_list = blog_service.getall()
-#print(f'blog_list={blog_list}')
-#app.run("0.0.0.0", port="8000")
+app.register_blueprint(api_module,  url_prefix='/api')
+blog_service = BlogService()
+blog_list = blog_service.getall()
+print(f'blog_list={blog_list}')
+app.run("0.0.0.0", port="8000")
 
 
 # for control-c capture

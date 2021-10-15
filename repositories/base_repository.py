@@ -59,3 +59,11 @@ class FSQLAlchemyRepository(BaseRepository):
 
     def all(self):
         return list(self.session.query(self.model).all())
+    # entity is an FSQLAlchemyRepository object to be updated    
+    def update_pass(self, entity, new_pass):
+        self.session.query(self.model).filter_by(public_id = entity.public_id).update({"password": new_pass})
+        self.session.commit()
+        # users = self.session.query(self.model).filter_by(public_id=entity.public_id).all()
+        # users[0].name= entity.name
+        # users[0].password = entity.password
+        # return users[0]

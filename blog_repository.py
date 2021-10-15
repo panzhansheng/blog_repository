@@ -13,7 +13,7 @@ from services.blog_service import BlogService
 
 db.init_db()
 
-
+# config the inject
 def config_ioc(binder):
     blog_repository = BlogRepository()
 
@@ -43,9 +43,10 @@ def config_ioc(binder):
     # binder.bind(db.MajorSQL,major_bind)
     # binder.bind(db.PreRecStudentSQL,prerecstudent_bind)
 
+# Configure a shared injector
 inject.configure(config_ioc)
 
-
+# jinya2 config
 class CustomFlask(Flask):
     jinja_options = Flask.jinja_options.copy()
     jinja_options.update(dict(
@@ -59,6 +60,7 @@ class CustomFlask(Flask):
 
 
 app = CustomFlask(__name__)
+#app = Flask(__name__)
 app.config['SECRET_KEY']='Gdou@2021'
 #app = Flask(__name__)
 #app.config.from_object(Config)
@@ -75,7 +77,7 @@ app.config['SECRET_KEY']='Gdou@2021'
 import template as bp
 bp.init(app)
 
-import login as bp_login
+from auth import login as bp_login
 bp_login.init(app)
 
 
