@@ -11,8 +11,6 @@ for p in sys.path:
     print(f'path={p}')
 
 
-#from base_repository import FSQLAlchemyRepository
-
 class UserRepository:
 
     def __init__(self):
