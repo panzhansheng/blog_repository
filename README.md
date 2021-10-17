@@ -132,7 +132,5 @@ class Blog(BaseModel):
 
 ```
 
-this is a one to many relation with delete cascade option.
-
-will get a fk_blog_user attribute with many-to-one semantics.
+this is a one to many relation with delete cascade option, will get a fk_blog_user attribute with many-to-one semantics.
 
