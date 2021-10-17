@@ -86,5 +86,5 @@ app.config['SECRET_KEY']='Gdou@2021'
 import template as bp
 bp.init(app)
 
-from auth import login as bp_login
-bp_login.init(app)
+# from auth import login as bp_login
+# bp_login.init(app)

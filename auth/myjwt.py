@@ -60,14 +60,15 @@ def token_required(f):
       try:
          token = session["token"]
       except:
-         return render_template('auth/login.html', url=request.referrer)
+         return render_template('login.html', url=request.referrer)
       if 'x-access-tokens' in request.headers:  
          token = request.headers['x-access-tokens'] 
 
       if not token:
          #return jsonify({'message': 'a valid token is missing'})   
 #         return render_template('login.html')
-         redirect(url_for(request.referrer))
+#         redirect(url_for(request.referrer))
+         redirect('login.html')
 
       try:
          data = jwt.decode(token, app.config['SECRET_KEY'])
@@ -76,7 +77,7 @@ def token_required(f):
       except Exception as e:
          print(f'exception message={str(e)}', file=sys.stdout)
          # url parameter will be ignored
-         return render_template('auth/login.html', url=request.url)
+         return render_template('login.html', url=request.url)
 #         return jsonify({'exception message': str(e)})  
 
       return f(current_user, *args,  **kwargs)  

@@ -41,6 +41,25 @@ class BlogService:
 
 ```
 
+## interface url prefix and blueprint template folder
+
+when creating blueprint object, we specify a template_folder parameter:
+```
+# template_folder is the templates files folder
+bp_login = Blueprint('login_post', __name__, template_folder='../views/auth')
+# register the blueprint object:
+app.register_blueprint(bp_login, name="login", url_prefix='/login')
+@bp_login.route('/', methods=['GET','POST'])
+```
+
+this means when using template in code:
+```
+render_template('index.html')
+```
+index.html located in ../views/auth directory.
+
+to access the login page, the url_prefix must be added to the blueprint route: /login
+
 ## Design table relations in MySQLWorkBench
 connect to your mysql server by using mysqlworkbench. From "Database" menu, choose "Reverse Engineer", follow the command direction, this will create Enhanced Entity-Relationship (EER) diagrams.
 <img src="images/wb1.png" width="800">

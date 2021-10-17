@@ -9,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 #from config import Config
 from repositories.blog_repository import BlogRepository
 from api import bp as api_module
+from user import bp_user
 from services.blog_service import BlogService
 #from api.blog_api import blog_service
 
@@ -64,7 +65,7 @@ app.config['SECRET_KEY']='Gdou@2021'
 #app = Flask(__name__)
 #app.config.from_object(Config)
 
-app.register_blueprint(api_module,  url_prefix='/api')
+#app.register_blueprint(api_module,  url_prefix='/api')
 blog_service = BlogService()
 blog_list = blog_service.getall()
 print(f'blog_list={blog_list}')
@@ -72,8 +73,8 @@ print(f'blog_list={blog_list}')
 import template as bp
 bp.init(app)
 
-from auth import login as bp_login
-bp_login.init(app)
+# from auth import login as bp_login
+# bp_login.init(app)
 
 app.run("0.0.0.0", port="8080")
 

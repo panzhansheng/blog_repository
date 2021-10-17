@@ -7,8 +7,8 @@ import os
 
 # add package search path for current file dir
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-for p in sys.path:
-    print(f'path={p}')
+# for p in sys.path:
+#     print(f'path={p}')
 
 
 class UserRepository:

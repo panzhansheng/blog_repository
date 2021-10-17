@@ -11,13 +11,16 @@ from models import User
 import db
 import datetime
 import inject
+from auth import bp_login
 
 from repositories.user_repository import UserRepository
 
-bp_login = Blueprint('login_post', __name__, template_folder='../views')
-@bp_login.route('/login', methods=['POST'])
+@bp_login.route('/', methods=['GET','POST'])
 def login_user(): 
- 
+
+  if request.method == 'GET':
+    return render_template('login.html')
+
 #  auth = request.authorization   
   user_name = request.form['username']
   password = request.form['password']
@@ -47,9 +50,9 @@ def login_user():
      print(f'token={token}')
      print(f'request.url={request.url}, request.referer={request.referrer}, request.ip={request.host}')
 #     return jsonify({'token' : token.decode('UTF-8'),'token_str': token_str}) 
-     # if access /api directly, will be directed to login.html page, after successful login, goto /api/blog
-     if request.referrer == f'http://{request.host}/api/':
-       return redirect('/api/blog')
+     # if access /login directly, will be directed to login.html page, after successful login, goto /api/blog
+     if request.referrer == f'http://{request.host}/' or request.referrer == None:
+       return redirect('/user/get')
      else:
       return redirect(request.referrer)
   return make_response('could not verify',  401, {'WWW.Authentication': 'Basic realm: "login required"'})
@@ -59,6 +62,6 @@ def logout_user():
     session['token'] = ''
     return render_template('index.html')
 
-def init(app):
-    app.register_blueprint(bp_login,  url_prefix='/')
+# def init(app):
+#     app.register_blueprint(bp_login, name='login', url_prefix='/')
 
