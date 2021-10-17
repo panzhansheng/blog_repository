@@ -43,18 +43,20 @@ class BlogService:
 
 ## Design table relations in MySQLWorkBench
 connect to your mysql server by using mysqlworkbench. From "Database" menu, choose "Reverse Engineer", follow the command direction, this will create Enhanced Entity-Relationship (EER) diagrams.
-<img src="images/wb1.png" size=400>
+<img src="images/wb1.png" width="800">
 
 we define a one to many relation between table user and blog, this will create a foreign key and a relation in table blog:  
-<img src="images/wb2.png" size=400>
+<img src="images/wb2.png" width="800">
 
 when finished, choose "Forward Engineer" from "Database" menu, this will change the table schemas according to the EER diagram, choose "Synchronize Model" from "Database" menu, the modification will take effect in database engine.
 
-<img src="images/wb3.png" size=400>
+<img src="images/wb3.png" width="800">
 
-<img src="images/wb4.png" size=400>
+table schemas changed:
 
- you can design table relations online like mysqlworkbench EER diagram in http://vertabelo.com and export the relations to XML file, then using github repo: https://github.com/Vertabelo/vertabelo-sqlalchemy to generate sqlalchemy model files.
+<img src="images/wb4.png" width="300">
+
+you can design table relations online like mysqlworkbench EER diagram in http://vertabelo.com and export the relations to XML file, then using github repo: https://github.com/Vertabelo/vertabelo-sqlalchemy to generate sqlalchemy model files.
 
 we define our sqlalchemy User model:
 
