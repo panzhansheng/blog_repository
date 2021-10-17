@@ -32,6 +32,7 @@ def login_user():
   # user not found
   if len(user) == 0:
     return render_template('login.html')
+  # get the first user object
   else:
     user = user[0]
   print(f'user={user}')
@@ -67,6 +68,4 @@ def logout_user():
     session['token'] = ''
     return render_template('index.html')
 
-# def init(app):
-#     app.register_blueprint(bp_login, name='login', url_prefix='/')
 
