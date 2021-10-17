@@ -6,7 +6,7 @@ from models.User import User
 from repositories.base_repository import FSQLAlchemyRepository
 from models import dbmetadata
 
-engine = create_engine('mysql+pymysql://pzs:pzspzsPzs0!@localhost/blog?charset=utf8')
+engine = create_engine('mysql+pymysql://pzs:pzs@localhost/blog?charset=utf8')
 Session = sessionmaker(bind=engine)
 session = Session()
 
