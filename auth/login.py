@@ -28,7 +28,12 @@ def login_user():
 #  print(f'user={user_name}')
 
   user_repo = inject.instance(UserRepository)
-  user = user_repo.find(name=user_name)[0]
+  user = user_repo.find(name=user_name)
+  # user not found
+  if len(user) == 0:
+    return render_template('login.html')
+  else:
+    user = user[0]
   print(f'user={user}')
   hashed_password = generate_password_hash(password, method='sha256')
   print(f'user={user.name},{user.password}, hashed={hashed_password}, url={url}, refer={request.referrer}')
