@@ -4,3 +4,5 @@ inject
 werkzeug
 jwt
 functools
+pymysql
+flask_sqlalchemy
