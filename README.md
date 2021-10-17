@@ -83,6 +83,7 @@ class User(BaseModel):
 
 ```
 
+To establish a bidirectional relationship in one-to-many, where the “reverse” side is a many to one, specify an additional relationship() in User model and connect the two using the relationship.back_populates parameter.
 Blog model:
 
 ```
@@ -113,4 +114,6 @@ class Blog(BaseModel):
 ```
 
 this is a one to many relation with delete cascade option.
+
+will get a fk_blog_user attribute with many-to-one semantics.
 
