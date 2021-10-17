@@ -7,7 +7,7 @@ import sys
 from functools import wraps
 #from blog_repository import app
 from flask import current_app as app
-from models import Users
+from models import User
 import db
 import datetime
 import inject

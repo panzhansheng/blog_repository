@@ -1,6 +1,6 @@
 import requests
 # 引入 requests，实现请求
-from models.blog import Blog
+from models.Blog import Blog
 
 URL = 'http://localhost/api/blog/getbloglist'
 # 输入在浏览器的网址

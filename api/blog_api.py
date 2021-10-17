@@ -9,8 +9,8 @@ from repositories.user_repository import UserRepository
 
 import inject
 from flask import  jsonify,json, render_template,request
-from models.blog import Blog
-from models.Users import Users
+from models.Blog import Blog
+from models.User import User
 from repositories.blog_repository import BlogRepository
 from services.blog_service import BlogService
 from api import bp
@@ -70,7 +70,7 @@ def register(current_user):
           # no user exists
           if len(user) == 0:
                hashed_password = generate_password_hash(password, method='sha256')
-               db_user = Users(name=user_name, password=hashed_password)
+               db_user = User(name=user_name, password=hashed_password)
                userRepo.create(db_user)
                return render_template('auth/register_ok.html', user=db_user.name)
           # user already exists

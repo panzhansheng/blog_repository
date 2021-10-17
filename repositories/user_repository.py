@@ -1,7 +1,7 @@
 import inject
 import typing
 import db
-from models.Users import Users
+from models.User import User
 import sys
 import os
 
@@ -16,7 +16,7 @@ class UserRepository:
     def __init__(self):
         pass
 
-    def all(self) -> typing.List[Users]:
+    def all(self) -> typing.List[User]:
         list= db.UserSQL.all()
         return list
     

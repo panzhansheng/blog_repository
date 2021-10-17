@@ -1,7 +1,7 @@
 import inject
 import typing
 import db
-from models.blog import Blog
+from models.Blog import Blog
 import sys
 sys.path.append('./')
 

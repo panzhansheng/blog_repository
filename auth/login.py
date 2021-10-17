@@ -7,7 +7,7 @@ import sys
 from functools import wraps
 #from blog_repository import app
 from flask import current_app as app
-from models import Users
+from models import User
 import db
 import datetime
 import inject
@@ -22,9 +22,11 @@ def login_user():
   user_name = request.form['username']
   password = request.form['password']
   url = request.form['url']
+#  print(f'user={user_name}')
 
   user_repo = inject.instance(UserRepository)
   user = user_repo.find(name=user_name)[0]
+  print(f'user={user}')
   hashed_password = generate_password_hash(password, method='sha256')
   print(f'user={user.name},{user.password}, hashed={hashed_password}, url={url}, refer={request.referrer}')
 

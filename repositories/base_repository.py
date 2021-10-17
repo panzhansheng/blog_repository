@@ -72,3 +72,8 @@ class FSQLAlchemyRepository(BaseRepository):
         self.session.commit()
         entity.password = new_text
         return entity
+
+    def update_field(self, entity, col_name, col_newvalue, **pk):
+        self.session.query(self.model).filter_by(**pk).update({col_name: col_newvalue})
+        self.session.commit()
+        return entity

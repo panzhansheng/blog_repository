@@ -1,6 +1,6 @@
 import inject
 import typing
-from models.blog import Blog
+from models.Blog import Blog
 from repositories.blog_repository import BlogRepository
 
 
